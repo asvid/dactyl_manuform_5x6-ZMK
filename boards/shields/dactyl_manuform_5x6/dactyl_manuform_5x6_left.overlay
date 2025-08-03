@@ -24,9 +24,9 @@
         sampling-hz = <100>;
         x-ch {
             io-channels = <&adc 0>; // X-axis on pin P0.02/AIN0
-            mv-mid = <1650>;
-            mv-min-max = <1400>;
-            mv-deadzone = <100>;
+            mv-mid = <2200>;
+            mv-min-max = <1300>;
+            mv-deadzone = <50>;
             scale-multiplier = <1>;
             scale-divisor = <25>;
             evt-type = <INPUT_EV_REL>;
@@ -34,9 +34,9 @@
         };
         y-ch {
             io-channels = <&adc 5>; // Y-axis on pin P0.29/AIN5
-            mv-mid = <1650>;
-            mv-min-max = <1400>;
-            mv-deadzone = <100>;
+            mv-mid = <1000>;
+            mv-min-max = <1000>;
+            mv-deadzone = <50>;
             scale-multiplier = <1>;
             scale-divisor = <25>;
             invert;
