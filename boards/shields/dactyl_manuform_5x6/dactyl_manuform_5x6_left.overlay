@@ -25,8 +25,8 @@
         x-ch {
             io-channels = <&adc 0>; // X-axis on pin P0.02/AIN0
             mv-mid = <1600>;
-            mv-min-max = <1550>;
-            mv-deadzone = <100>;
+            mv-min-max = <1600>;
+            mv-deadzone = <400>;
             scale-multiplier = <1>;
             scale-divisor = <30>;
             evt-type = <INPUT_EV_REL>;
@@ -35,8 +35,8 @@
         y-ch {
             io-channels = <&adc 5>; // Y-axis on pin P0.29/AIN5
             mv-mid = <2500>;
-            mv-min-max = <800>;
-            mv-deadzone = <100>;
+            mv-min-max = <900>;
+            mv-deadzone = <400>;
             scale-multiplier = <1>;
             scale-divisor = <30>;
             invert;
