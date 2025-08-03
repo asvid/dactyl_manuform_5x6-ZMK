@@ -23,7 +23,7 @@
         compatible = "zmk,analog-input";
         sampling-hz = <100>;
         x-ch {
-            io-channels = <&adc 2>; // X-axis on pin P0.04/AIN2
+            io-channels = <&adc 0>; // X-axis on pin P0.02/AIN0
             mv-mid = <1650>;
             mv-min-max = <1600>;
             mv-deadzone = <50>;
@@ -33,7 +33,7 @@
             input-code = <INPUT_REL_X>;
         };
         y-ch {
-            io-channels = <&adc 3>; // Y-axis on pin P0.05/AIN3
+            io-channels = <&adc 5>; // Y-axis on pin P0.29/AIN5
             mv-mid = <1650>;
             mv-min-max = <1600>;
             mv-deadzone = <50>;
