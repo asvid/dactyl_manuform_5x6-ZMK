@@ -1,4 +1,6 @@
 #include "dactyl_manuform_5x6.dtsi" // Notice that the main dtsi files are included in the overlay.
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
 
 &kscan0 {
     col-gpios
@@ -9,4 +11,44 @@
         , <&pro_micro 8 GPIO_ACTIVE_HIGH>
         , <&pro_micro 9 GPIO_ACTIVE_HIGH>
         ;
+};
+
+&adc {
+    status = "okay";
+};
+
+/ {
+    // Left joystick for scroll wheel functionality
+    left_joystick: analog_input_left {
+        compatible = "zmk,analog-input";
+        sampling-hz = <100>;
+        x-ch {
+            io-channels = <&adc 2>; // X-axis on pin P0.04/AIN2
+            mv-mid = <1650>;
+            mv-min-max = <1600>;
+            mv-deadzone = <50>;
+            scale-multiplier = <1>;
+            scale-divisor = <20>;
+            evt-type = <INPUT_EV_REL>;
+            input-code = <INPUT_REL_X>;
+        };
+        y-ch {
+            io-channels = <&adc 3>; // Y-axis on pin P0.05/AIN3
+            mv-mid = <1650>;
+            mv-min-max = <1600>;
+            mv-deadzone = <50>;
+            scale-multiplier = <1>;
+            scale-divisor = <20>;
+            invert;
+            evt-type = <INPUT_EV_REL>;
+            input-code = <INPUT_REL_Y>;
+        };
+    };
+
+    // Input listener for left joystick scroll functionality
+    left_joystick_listener {
+        compatible = "zmk,input-listener";
+        device = <&left_joystick>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
+    };
 };
