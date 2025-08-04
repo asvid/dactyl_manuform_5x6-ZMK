@@ -28,7 +28,7 @@
             mv-min-max = <1600>;
             mv-deadzone = <400>;
             scale-multiplier = <1>;
-            scale-divisor = <30>;
+            scale-divisor = <70>;
             evt-type = <INPUT_EV_REL>;
             input-code = <INPUT_REL_X>;
         };
@@ -37,11 +37,13 @@
             mv-mid = <2500>;
             mv-min-max = <900>;
             mv-deadzone = <400>;
-            scale-multiplier = <1>;
-            scale-divisor = <30>;
+            scale-multiplier = <3>;
+            scale-divisor = <4>;
             invert;
             evt-type = <INPUT_EV_REL>;
             input-code = <INPUT_REL_Y>;
+
+            report-on-change-only;
         };
     };
 
@@ -49,6 +51,6 @@
     left_joystick_listener {
         compatible = "zmk,input-listener";
         device = <&left_joystick>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+        input-processors = <&zip_xy_to_scroll_mapper &zip_scroll_scaler 1 2>;
     };
 };

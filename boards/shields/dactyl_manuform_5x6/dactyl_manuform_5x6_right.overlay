@@ -1,5 +1,6 @@
 #include "dactyl_manuform_5x6.dtsi"
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
 
 &default_transform { // The matrix transform for this board is 6 columns over because the left half is 6 columns wide according to the matrix.
     col-offset = <6>;
@@ -31,7 +32,7 @@
             mv-min-max = <1600>;
             mv-deadzone = <400>;
             scale-multiplier = <1>;
-            scale-divisor = <20>;
+            scale-divisor = <70>;
             evt-type = <INPUT_EV_REL>;
             input-code = <INPUT_REL_X>;
         };
@@ -40,11 +41,13 @@
             mv-mid = <2500>;
             mv-min-max = <900>;
             mv-deadzone = <400>;
-            scale-multiplier = <1>;
-            scale-divisor = <20>;
+            scale-multiplier = <3>;
+            scale-divisor = <4>;
             invert;
             evt-type = <INPUT_EV_REL>;
             input-code = <INPUT_REL_Y>;
+
+            report-on-change-only;
         };
     };
 
@@ -52,5 +55,6 @@
     right_joystick_listener {
         compatible = "zmk,input-listener";
         device = <&right_joystick>;
+        input-processors = <&zip_xy_scaler 1 1>;
     };
 };
